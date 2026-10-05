@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beach Culture in Australia</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fredoka:wght@500;700&display=swap">
+<style>
+:root{--sky1:#bfeaf8;--sky2:#e6f7fb;--sand1:#f6e7c6;--sand2:#efd49d;--card:#fffdf7;--ink:#14323b;--mute:#4d6870;--line:#cfe0e2;--accent:#0b7285;--accent-ink:#fff;--good:#1b7f4b;--goodbg:#dff3e6;--bad:#b3392f;--badbg:#fbe3e0;--sun:#f4a300;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky1:#0b2233;--sky2:#17394a;--sand1:#3a3326;--sand2:#2d281d;--card:#13262e;--ink:#e8f3f5;--mute:#9fb8bf;--line:#2b4650;--accent:#52c1d4;--accent-ink:#06222a;--good:#72d9a0;--goodbg:#153a29;--bad:#ff8e84;--badbg:#431e1b;--sun:#ffc24a}}
+:root[data-theme="dark"]{--sky1:#0b2233;--sky2:#17394a;--sand1:#3a3326;--sand2:#2d281d;--card:#13262e;--ink:#e8f3f5;--mute:#9fb8bf;--line:#2b4650;--accent:#52c1d4;--accent-ink:#06222a;--good:#72d9a0;--goodbg:#153a29;--bad:#ff8e84;--badbg:#431e1b;--sun:#ffc24a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;color:var(--ink);font:18px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif;background:linear-gradient(var(--sky1) 0,var(--sky2) 760px,var(--sand1) 760px,var(--sand2) 100%)}
+h1,h2,h3{font-family:Fredoka,"Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+header{width:100%;padding:22px 28px 14px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px}
+h1{font-size:clamp(1.8rem,3.2vw,2.8rem);line-height:1.1;font-weight:700}
+header p{margin:0;color:var(--mute);max-width:46ch}
+.stage{width:100%;padding:0 28px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:20px}
+.scene{position:relative;height:clamp(400px,calc(100vh - 170px),780px);border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(8,60,80,.25);border:3px solid var(--card)}
+.scene svg{display:block;width:100%;height:100%}
+.hs{cursor:pointer}
+.hs .ring{fill:none;stroke:#fff;stroke-width:3;transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-out infinite}
+.hs .dot{fill:#fff;stroke:#0b7285;stroke-width:4}
+.hs text.mk{font:700 24px Fredoka,sans-serif;fill:#0b7285;text-anchor:middle;pointer-events:none}
+.hs.seen .dot{fill:#1b7f4b;stroke:#fff}.hs.seen text.mk{fill:#fff}.hs.seen .ring{animation:none;opacity:0}
+.hs.on .dot{stroke:#ffb400;stroke-width:7}
+.hs:hover .dot,.hs:focus-visible .dot{stroke:#ffb400;stroke-width:7}
+.hs:focus{outline:none}
+.lab{font:700 21px Fredoka,sans-serif;fill:#fff;stroke:#0e3a46;stroke-width:5px;paint-order:stroke;text-anchor:middle;pointer-events:none}
+@keyframes pulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-120px)}}
+.waves{animation:drift 7s linear infinite}
+.panel{background:var(--card);border-radius:20px;padding:22px;box-shadow:0 8px 30px rgba(8,60,80,.18);height:clamp(400px,calc(100vh - 170px),780px);overflow:auto;display:flex;flex-direction:column;gap:12px}
+.prog{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.prog i{width:22px;height:22px;border-radius:50%;border:2px solid var(--accent);display:inline-block}
+.prog i.d{background:var(--good);border-color:var(--good)}
+.prog span{margin-left:6px;font-weight:700}
+.panel h2{font-size:1.6rem;line-height:1.15}
+.panel p{margin:0}
+.words{display:grid;gap:8px;margin-top:4px}
+.words div{background:var(--sky2);border-radius:10px;padding:8px 12px}
+.words b{color:var(--accent)}
+.hintbox{color:var(--mute)}
+.quiz{width:100%;padding:56px 28px 64px}
+.qwrap{max-width:1100px;margin:0 auto}
+.quiz h2{font-size:clamp(1.6rem,2.6vw,2.2rem);margin-bottom:10px}
+.lock{background:var(--card);border-radius:16px;padding:20px 24px;border:2px dashed var(--accent)}
+.qcard{background:var(--card);border-radius:20px;padding:26px;box-shadow:0 6px 24px rgba(90,60,10,.15)}
+.qn{color:var(--mute);margin:0 0 6px}
+.q{font:700 1.5rem/1.3 Fredoka,sans-serif;margin:0 0 16px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.opt{font:inherit;text-align:left;color:var(--ink);background:var(--sky2);border:2px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;min-height:56px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt.good{background:var(--goodbg);border-color:var(--good)}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.btn{font:inherit;font-weight:700;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:10px 22px;cursor:pointer;min-height:46px;margin-top:14px}
+.btn:focus-visible,.opt:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.exp{margin-top:12px;padding:10px 14px;border-left:5px solid var(--accent);background:var(--sky2);border-radius:0 10px 10px 0}
+[hidden]{display:none!important}
+.hsi{transform:scale(1)}
+.chips{display:none;grid-template-columns:1fr 1fr;gap:10px}
+.chip{font:inherit;font-weight:700;display:flex;align-items:center;gap:10px;text-align:left;color:var(--ink);background:var(--card);border:2px solid var(--accent);border-radius:12px;padding:8px 12px;min-height:52px;cursor:pointer}
+.chip b{flex:none;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--accent);color:var(--accent);font-family:Fredoka,sans-serif}
+.chip.seen{background:var(--goodbg);border-color:var(--good)}
+.chip.seen b{background:var(--good);border-color:var(--good);color:#fff}
+.chip:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+@media (max-width:960px){header{padding:18px 16px 12px}.stage{grid-template-columns:1fr;padding:0 16px;gap:14px}.panel{height:auto;max-height:none}.scene{height:auto;aspect-ratio:1200/360}.hsi{transform:scale(1.7)}.lab{display:none}.chips{display:grid}.quiz{padding:40px 16px 48px}.opts{grid-template-columns:1fr}}
+@media (max-width:360px){.chips{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.hs .ring,.waves{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Beach Culture in Australia</h1>
+  <p>Explore the beach. Tap the 8 numbered spots to learn how Australians use and respect the beach.</p>
+</header>
+
+<div class="stage">
+  <div class="scene">
+  <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="group" aria-label="Interactive beach scene with eight spots to explore">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fb8e6"/><stop offset="1" stop-color="#d9f4fb"/></linearGradient>
+      <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f8fb3"/><stop offset="1" stop-color="#6fd3d8"/></linearGradient>
+      <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e6b4"/><stop offset="1" stop-color="#e8c47e"/></linearGradient>
+    </defs>
+    <rect width="1200" height="600" fill="url(#sky)"/>
+    <circle cx="990" cy="110" r="95" fill="#fff3b0" opacity=".35"/><circle cx="990" cy="110" r="52" fill="#ffe27a"/>
+    <g fill="#fff" opacity=".9"><ellipse cx="260" cy="90" rx="90" ry="22"/><ellipse cx="320" cy="76" rx="60" ry="20"/><ellipse cx="640" cy="140" rx="80" ry="18"/><ellipse cx="700" cy="128" rx="50" ry="16"/></g>
+    <rect y="250" width="1200" height="170" fill="url(#sea)"/>
+    <ellipse cx="380" cy="310" rx="46" ry="62" fill="#14708f" opacity=".45"/>
+    <g id="waves" class="waves" fill="none" stroke="#fff" stroke-width="3" opacity=".55"></g>
+    <path d="M0 420 L0 335 Q70 300 150 332 L270 365 L310 420Z" fill="#7d6b57"/>
+    <ellipse cx="170" cy="392" rx="74" ry="19" fill="#4fc3d6" stroke="#5b4a3a" stroke-width="4"/>
+    <path d="M0 402 Q300 378 600 396 T1200 384 L1200 600 L0 600Z" fill="url(#sand)"/>
+    <path d="M0 404 Q300 382 600 399 T1200 388" fill="none" stroke="#fff" stroke-width="5" opacity=".8"/>
+    <!-- flags -->
+    <g><line x1="560" y1="335" x2="560" y2="408" stroke="#5b4a3a" stroke-width="4"/><line x1="640" y1="335" x2="640" y2="408" stroke="#5b4a3a" stroke-width="4"/><rect x="562" y="336" width="34" height="22" fill="#e03c31"/><rect x="604" y="336" width="34" height="22" fill="#f2c200"/></g>
+    <!-- tower -->
+    <g><line x1="858" y1="388" x2="858" y2="420" stroke="#5b4a3a" stroke-width="5"/><line x1="902" y1="388" x2="902" y2="420" stroke="#5b4a3a" stroke-width="5"/><rect x="842" y="342" width="76" height="46" fill="#f2c200"/><rect x="842" y="342" width="76" height="14" fill="#e03c31"/><path d="M836 342 L880 318 L924 342Z" fill="#e03c31"/><rect x="862" y="362" width="36" height="14" fill="#8fd3e8"/></g>
+    <!-- umbrella -->
+    <g><rect x="700" y="486" width="112" height="26" fill="#2f7fc1" transform="rotate(-4 756 499)"/><line x1="760" y1="414" x2="760" y2="490" stroke="#5b4a3a" stroke-width="5"/><path d="M692 434 A68 48 0 0 1 828 434Z" fill="#e8554b"/><path d="M726 434 A34 48 0 0 1 760 386 L760 434Z M794 434 A34 48 0 0 0 760 386 L760 434Z" fill="#fff" opacity=".85"/></g>
+    <!-- esky + thongs -->
+    <g><rect x="436" y="478" width="68" height="40" rx="4" fill="#dff2f7"/><rect x="432" y="470" width="76" height="14" rx="4" fill="#e8554b"/><ellipse cx="552" cy="520" rx="9" ry="17" fill="#f2a900" transform="rotate(20 552 520)"/><ellipse cx="576" cy="522" rx="9" ry="17" fill="#f2a900" transform="rotate(20 576 522)"/></g>
+    <!-- sign -->
+    <g><rect x="1036" y="418" width="9" height="62" fill="#5b4a3a"/><rect x="996" y="384" width="88" height="46" rx="4" fill="#fff" stroke="#14323b" stroke-width="3"/><circle cx="1020" cy="407" r="12" fill="none" stroke="#d62d20" stroke-width="4"/><line x1="1012" y1="415" x2="1028" y2="399" stroke="#d62d20" stroke-width="4"/><rect x="1038" y="398" width="36" height="5" fill="#14323b"/><rect x="1038" y="411" width="28" height="5" fill="#14323b"/></g>
+    <!-- bluebottle -->
+    <g><ellipse cx="300" cy="352" rx="16" ry="9" fill="#3e6fe6"/><path d="M290 358 q-10 20 4 28 t-2 22 M300 360 q8 16 -2 26 t4 20" fill="none" stroke="#6b8cf0" stroke-width="3"/></g>
+    <g id="hotspots"></g>
+  </svg>
+  </div>
+
+  <div class="chips" id="chips" aria-label="All 8 beach topics"></div>
+
+  <aside class="panel" aria-live="polite">
+    <div class="prog" id="prog"></div>
+    <div id="info">
+      <h2>Start exploring</h2>
+      <p class="hintbox">Choose any numbered circle in the picture. Read the notes, learn the words, and visit all 8 spots to unlock the quiz.</p>
+    </div>
+  </aside>
+</div>
+
+<section class="quiz" id="quiz">
+  <div class="qwrap">
+    <h2>Beach Safety Challenge</h2>
+    <div class="lock" id="lock">Explore all 8 spots in the beach scene to unlock the quiz.</div>
+    <div id="qbox" hidden></div>
+  </div>
+</section>
+
+<script>
+var SPOTS=[
+ {n:"Flags",x:600,y:318,h:"Swim between the flags",t:"The red and yellow flags mark the safest place to swim. Lifesavers watch this area. If you do not see flags, ask a lifesaver or lifeguard where it is safe.",w:[["patrolled","watched by lifesavers or lifeguards"],["between the flags","inside the safe swimming area"]]},
+ {n:"Lifesavers",x:880,y:310,h:"Surf lifesavers",t:"Many Australian beaches have a surf lifesaving club. Volunteer lifesavers in red and yellow watch the water, often on weekends and holidays. Some beaches also have paid lifeguards.",w:[["volunteer","a person who works without pay"],["patrol","to watch an area to keep people safe"]]},
+ {n:"Rip current",x:380,y:292,h:"Rip currents",t:"A rip current is a strong flow of water that pulls swimmers away from the beach. It can look like a darker, calmer gap in the waves. If you are caught, stay calm, float, raise one arm and call for help.",w:[["rip","a strong current going out to sea"],["float","to lie on the water without swimming hard"]]},
+ {n:"Sun safety",x:760,y:376,h:"Slip, Slop, Slap, Seek, Slide",t:"Slip on a shirt, slop on sunscreen, slap on a hat, seek shade and slide on sunglasses. The sun in Australia can be very strong, so sun protection is part of beach culture.",w:[["UV","ultraviolet light from the sun"],["sunnies","sunglasses (Australian slang)"]]},
+ {n:"Aussie words",x:490,y:456,h:"Aussie beach words",t:"Australians shorten many words. You might bring an esky of cold drinks, wear thongs on your feet, and go to the beach in the arvo. Swimwear has different names by region: togs, bathers or swimmers.",w:[["esky","a cooler box for food and drinks"],["thongs","flip-flops (not underwear!)"],["arvo","afternoon"]]},
+ {n:"Ocean pool",x:170,y:362,h:"Ocean pools",t:"Ocean pools are swimming pools built into rocks at the edge of the sea. Waves refill them with sea water. There are many along the New South Wales coast, and people use them for early-morning swims.",w:[["swim laps","swim up and down the pool"],["refill","fill again"]]},
+ {n:"Beach signs",x:1040,y:366,h:"Read the signs",t:"Beach signs tell you the rules and the dangers. Rules about dogs, alcohol, glass and drones can change from beach to beach, so always check the sign before you set up.",w:[["restricted","limited; not allowed everywhere"],["warning","a message about danger"]]},
+ {n:"Bluebottle",x:300,y:326,h:"Bluebottles",t:"Bluebottles are blue sea animals that can sting. They can wash up onto the sand, and they can still sting there. Do not touch them. If you are stung, ask a lifesaver for help.",w:[["sting","to hurt with a poisonous touch"],["wash up","to be carried onto the beach by waves"]]}
+];
+var QUIZ=[
+ {q:"Where is the safest place to swim?",o:["Anywhere with big waves","Between the red and yellow flags","Next to the rocks"],a:1,e:"Lifesavers watch the area between the red and yellow flags."},
+ {q:"You are caught in a rip current. What should you do?",o:["Swim hard straight to the beach","Float, raise one arm and call for help","Dive under the water"],a:1,e:"Stay calm and float. Fighting the current makes you tired."},
+ {q:"What does \"slop\" mean in Slip, Slop, Slap?",o:["Put on sunscreen","Put on a hat","Sit in the shade"],a:0,e:"Slip on a shirt, slop on sunscreen, slap on a hat."},
+ {q:"In Australia, what are \"thongs\"?",o:["Flip-flops","Sunglasses","A cooler box"],a:0,e:"Thongs are flip-flops. Sunglasses are sunnies, and a cooler box is an esky."},
+ {q:"Who patrols many Australian beaches as volunteers?",o:["Surf lifesavers","Shop workers","Taxi drivers"],a:0,e:"Volunteer surf lifesavers wear red and yellow and watch the water."}
+];
+var NS="http://www.w3.org/2000/svg",seen={},count=0,cur=null;
+var mq=window.matchMedia("(max-width:960px)"),svg=document.querySelector(".scene svg");
+function fit(){if(mq.matches){svg.setAttribute("viewBox","0 230 1200 360");svg.setAttribute("preserveAspectRatio","xMidYMid meet")}else{svg.setAttribute("viewBox","0 0 1200 600");svg.setAttribute("preserveAspectRatio","xMidYMid slice")}}
+fit();if(mq.addEventListener)mq.addEventListener("change",fit);else mq.addListener(fit);
+function reveal(){if(!mq.matches)return;var r=window.matchMedia("(prefers-reduced-motion:reduce)").matches;document.getElementById("info").scrollIntoView({behavior:r?"auto":"smooth",block:"nearest"})}
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+// waves
+(function(){var g=document.getElementById("waves"),rows=[272,300,332,360,388];rows.forEach(function(y,i){var d="M-120 "+y;for(var x=0;x<1500;x+=60)d+=" q15 -10 30 0 t30 0";var p=el("path",{d:d,transform:"translate("+(i%2?-40:0)+" 0)"});g.appendChild(p)})})();
+// hotspots
+var hg=document.getElementById("hotspots"),prog=document.getElementById("prog");
+SPOTS.forEach(function(s,i){
+  var g=el("g",{class:"hs",tabindex:"0",role:"button","aria-label":"Spot "+(i+1)+": "+s.n,transform:"translate("+s.x+" "+s.y+")"});
+  var gi=el("g",{class:"hsi"});gi.appendChild(el("circle",{class:"ring",r:22}));gi.appendChild(el("circle",{class:"dot",r:22}));
+  var t=el("text",{class:"mk",y:8});t.textContent=i+1;gi.appendChild(t);
+  var l=el("text",{class:"lab",y:48});l.textContent=s.n;gi.appendChild(l);g.appendChild(gi);
+  function go(){open(i,g);reveal()}
+  g.addEventListener("click",go);g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}});
+  hg.appendChild(g);s.g=g;
+});
+var chips=document.getElementById("chips");
+SPOTS.forEach(function(s,i){var b=document.createElement("button");b.type="button";b.className="chip";var n=document.createElement("b");n.textContent=i+1;b.appendChild(n);b.appendChild(document.createTextNode(s.n));b.onclick=function(){open(i,s.g);reveal()};s.c=b;chips.appendChild(b)});
+function drawProg(){prog.innerHTML="";SPOTS.forEach(function(s,i){var d=document.createElement("i");if(seen[i])d.className="d";prog.appendChild(d)});var sp=document.createElement("span");sp.textContent=count+" of 8 explored";prog.appendChild(sp)}
+function open(i,g){
+  var s=SPOTS[i];if(cur)cur.classList.remove("on");g.classList.add("on");cur=g;
+  if(!seen[i]){seen[i]=1;count++;g.classList.add("seen");g.querySelector("text.mk").textContent="✓";s.c.classList.add("seen");s.c.firstChild.textContent="✓"}
+  var info=document.getElementById("info");info.innerHTML="";
+  var h=document.createElement("h2");h.textContent=s.h;var p=document.createElement("p");p.textContent=s.t;var w=document.createElement("div");w.className="words";
+  s.w.forEach(function(x){var d=document.createElement("div");var b=document.createElement("b");b.textContent=x[0];d.appendChild(b);d.appendChild(document.createTextNode(": "+x[1]));w.appendChild(d)});
+  info.appendChild(h);info.appendChild(p);info.appendChild(w);drawProg();
+  if(count===8)unlock();
+}
+drawProg();
+// quiz
+var qi=0,score=0,unlocked=false;
+function unlock(){if(unlocked)return;unlocked=true;document.getElementById("lock").hidden=true;document.getElementById("qbox").hidden=false;renderQ();
+  var r=window.matchMedia("(prefers-reduced-motion:reduce)").matches;setTimeout(function(){document.getElementById("quiz").scrollIntoView({behavior:r?"auto":"smooth"})},700)}
+function renderQ(){
+  var b=document.getElementById("qbox");b.innerHTML="";
+  if(qi>=QUIZ.length){
+    var c=document.createElement("div");c.className="qcard";
+    var h=document.createElement("h3");h.textContent="You scored "+score+" out of "+QUIZ.length;var p=document.createElement("p");
+    p.textContent="Now write 3 sentences: How is a beach day in your country different from a beach day in Australia? Use at least 3 new words from this activity.";
+    var r=document.createElement("button");r.className="btn";r.textContent="Try the quiz again";r.onclick=function(){qi=0;score=0;renderQ()};
+    c.appendChild(h);c.appendChild(p);c.appendChild(r);b.appendChild(c);return}
+  var Q=QUIZ[qi],c=document.createElement("div");c.className="qcard";
+  var n=document.createElement("p");n.className="qn";n.textContent="Question "+(qi+1)+" of "+QUIZ.length;
+  var q=document.createElement("p");q.className="q";q.textContent=Q.q;var o=document.createElement("div");o.className="opts";
+  var ex=document.createElement("div");ex.className="exp";ex.hidden=true;var nx=document.createElement("button");nx.className="btn";nx.textContent=qi<QUIZ.length-1?"Next question":"See my score";nx.hidden=true;
+  nx.onclick=function(){qi++;renderQ()};
+  Q.o.forEach(function(t,k){var x=document.createElement("button");x.className="opt";x.textContent=t;
+    x.onclick=function(){var ok=k===Q.a;if(ok)score++;
+      Array.prototype.forEach.call(o.children,function(y,j){y.disabled=true;if(j===Q.a)y.classList.add("good")});if(!ok)x.classList.add("bad");
+      ex.textContent=(ok?"Correct! ":"Not quite. ")+Q.e;ex.hidden=false;nx.hidden=false;nx.focus()};o.appendChild(x)});
+  c.appendChild(n);c.appendChild(q);c.appendChild(o);c.appendChild(ex);c.appendChild(nx);b.appendChild(c);
+}
+</script>
+</body>
+</html>
